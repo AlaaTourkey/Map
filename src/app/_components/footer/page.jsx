@@ -52,7 +52,7 @@ export default function Footer() {
       <div className='col-md-6  '>
         <p className='fw-bold  m-0'>Copyright 2022, schoolsmap.com</p>
       </div>
-      <nav className={`navbar navbar-expand-lg col-md-6`}>
+      <nav className='navbar navbar-expand-lg col-md-6'>
         <div className=" py-1">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mx-5 mb-lg-0">
