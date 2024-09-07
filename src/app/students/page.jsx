@@ -53,51 +53,51 @@ export default function Students() {
   return (
     <>
       <div className="bg-body-secondary text-center m-auto p-5 ">
-        <h6 className="text-muted">What we created</h6>
+        <h6 className="text-muted pt-5">What we created</h6>
         <h1 className="page-header">Students List</h1>
-        <h6 className="page-para w-75 m-auto">
+        <h6 className="page-para w-50 m-auto">
           We help teams create great digital products by providing them with tools and technology to make the design-to-code process universally accessible.
         </h6>
       </div>
 
-      <div className="container w-75 mx-auto">
+      <div className="container mx-auto">
         <div className="row justify-content-between align-items-center pt-4 my-4">
-          <div className="col-md-6">
-            <div className="row justify-content-start align-items-center">
-              <div className="col-md-4">
-                <Dropdown>
-                  <Dropdown.Toggle variant="white" id="dropdown-basic" className="rounded-4 my-2 shadow">
-                    <i className="fa-regular fa-user"></i> <span className="fw-light">Gender</span>
-                  </Dropdown.Toggle>
+          <div className="col-md-6 d-flex justify-content-around justify-content-md-start">
+            <div className="me-4 ">
+              <Dropdown>
+                <Dropdown.Toggle variant="white" id="dropdown-basic" className="rounded-4 my-2 shadow">
+                  <i className="fa-regular fa-user"></i> <span className="fw-light">Gender</span>
+                </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => handleGenderChange("All")}>All</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleGenderChange("male")}>Male</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleGenderChange("female")}>Female</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-              <div className="col-md-4">
-                <Dropdown>
-                  <Dropdown.Toggle variant="white" id="dropdownMenuSchools" className="rounded-4 my-2 shadow">
-                    <i className="fa-solid fa-school"></i> <span className="fw-light">Search for schools</span>
-                  </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => handleGenderChange("All")}>All</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleGenderChange("male")}>Male</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleGenderChange("female")}>Female</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+            <div className="">
+              <Dropdown>
+                <Dropdown.Toggle variant="white" id="dropdownMenuSchools" className="rounded-4 my-2 shadow">
+                <i className="fa-solid fa-building"></i> <span className="fw-light">schools</span>
+                </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => handleSchoolChange("All")}>All</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleSchoolChange("Gamal Abdelbaser School")}>
-                      Gamal Abdelbaser School
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleSchoolChange("Alex School")}>Alex School</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => handleSchoolChange("All")}>All</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleSchoolChange("Gamal Abdelbaser School")}>
+                    Gamal Abdelbaser School
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleSchoolChange("Alex School")}>Alex School</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </div>
-          <div className="col-md-6">
+
+
+          <div className="col-md-5 offset-md-1">
             <input
               type="search"
-              className="form-control rounded-4 p-2 shadow-lg"
+              className="form-control rounded-4 p-2 px-3 shadow-lg"
               placeholder="Search for student"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -106,7 +106,7 @@ export default function Students() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container ">
         <div className="row gy-4">
           {filteredStudents.map((student) => (
             <div key={student.id} className="col-12 col-sm-6 col-md-4 mb-4">

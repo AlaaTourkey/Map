@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import Filter from './_components/Filter/page';
 
 
 const Map = dynamic(() => import('../app/_components/Map/page'), {
@@ -21,6 +22,7 @@ export default function Home() {
   const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +65,10 @@ export default function Home() {
     return <p>Error loading data: {error.message}</p>;
   }
 
+
+  const toggleFilter = () => {
+    setShowFilter(prev => !prev);
+  };
   return (
     <div>
       <Head>
@@ -70,8 +76,22 @@ export default function Home() {
         <meta name="description" content="Next.js app with Google Maps integration" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className='main-comp '>
         <Map key={path} markers={filteredMarkers} onApply={handleFilterApply}  onFilterClear={handleFilterClear}  />
+        
+        
+        <div>
+          <button onClick={toggleFilter} className='toggle-btn'>
+            <i className="fa fa-filter mx-1"></i> Filter
+          </button>
+        </div>
+
+
+        {showFilter && (
+        <div className="sidebar-left">
+          <Filter onClose={() => setShowFilter(false)} onApply={handleFilterApply} onClear={handleFilterClear} />
+        </div>
+      )}
       </main>
     </div>
   );

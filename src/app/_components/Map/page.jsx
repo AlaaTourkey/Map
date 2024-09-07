@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { APIProvider, Map, Marker, InfoWindow } from '@vis.gl/react-google-maps';
-import Filter from '../Filter/page';
+// import Filter from '../Filter/page';
 import { useRouter } from 'next/navigation';
 
 
@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation';
 const containerStyle = {
   width: '100%',
   height: '100vh',
+  position:'relative',
+  overflow: 'unset'
 };
 const center = {
   lat: 30.0444,
@@ -180,16 +182,12 @@ const mapStyles = [
 ]
 
 const GMap = ({ markers = [], onSeeMoreClick }) => {
-  const [showFilter, setShowFilter] = useState(false);
   const [filteredMarkers, setFilteredMarkers] = useState(markers || []);
   const [showInfoWindow, setShowInfoWindow] = useState(false);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const router = useRouter();
 
 
-  const toggleFilter = () => {
-    setShowFilter(prev => !prev);
-  };
   const handleFilterApply = (filteredData) => {
     const newMarkers = filteredData.map(item => ({
       latitude: item.latitude,
@@ -221,13 +219,17 @@ const GMap = ({ markers = [], onSeeMoreClick }) => {
 
   };
 
+  const handleMapClick = () => {
+    handleInfoWindowClose(); // Close info window on map click
+  };
+
 
   return (
     <>
 
       <APIProvider apiKey={process.env.GOOGLE_MAPS_API_KEY} onLoad={() => console.log('Maps API has loaded.')}>
         <div style={containerStyle} >
-          <Map defaultZoom={6} defaultCenter={center} options={{ styles: mapStyles }}  >
+          <Map onClick={handleMapClick} defaultZoom={6} defaultCenter={center} options={{ styles: mapStyles }}  >
             {filteredMarkers && filteredMarkers.map((mark, index) => (
               <Marker key={index} position={{ lat: mark.latitude, lng: mark.longtude }} icon={customIconUrl} onClick={() => handleMarkerClick(mark)} />
             ))}
@@ -283,18 +285,10 @@ const GMap = ({ markers = [], onSeeMoreClick }) => {
             )}
           </Map>
         </div>
-        <div>
-          <button onClick={toggleFilter} className='toggle-btn'>
-            <i className="fa fa-filter mx-1"></i> Filter
-          </button>
-        </div>
+        
       </APIProvider>
 
-      {showFilter && (
-        <div className="sidebar-left">
-          <Filter onClose={() => setShowFilter(false)} onApply={handleFilterApply} onClear={handleFilterClear} />
-        </div>
-      )}
+     
     </>
   );
 }

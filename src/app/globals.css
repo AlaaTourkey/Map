@@ -1,12 +1,31 @@
-.container{
+footer .container{
     max-width: 1140px !important;
+}
+.nav-link{
+    color: #ffffff80 !important;
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+}
+.nav-link:hover{
+    color: #ffffffbf !important ;
 }
 .active {
     font-size: 17px;
     font-weight: 700;
     border-bottom: solid 2px #fff;
 }
-
+.gm-style .gm-style-iw-d{
+    overflow: unset !important;
+}
+.gm-style .gm-style-iw-c {
+    padding: 0;
+}
+.gm-style-iw-chr{
+    display: none;
+}
 .info-card {
     font-weight: 400;
     font-size: 14px;
@@ -69,6 +88,9 @@ dd {
     font-size: 13px;
     color: #000;
 }
+.main-comp{
+    position: relative;
+}
 
 .toggle-btn {
     position: absolute;
@@ -79,7 +101,7 @@ dd {
     height: 40px;
     line-height: 10px;
     text-align: center;
-    top: 83px;
+    top: 11px;
     left: 199px;
     border: 0;
     outline: 0 !important;
@@ -173,7 +195,7 @@ dd {
 /* styles.css */
 .sidebar-left {
     position: absolute;
-    top: 72px;
+    top: 0;
     left: 0;
     height: 100%;
     width: 500px;
@@ -238,10 +260,13 @@ label {
     opacity: .8;
 }
 /* school comp*/
-.student-card{
+.student-card ,
+.school-card
+{
     transition: box-shadow .5s;
 }
-.student-card:hover{
+.student-card:hover ,
+.school-card:hover{
     box-shadow: 1px 4px 34px rgba(0, 0, 0, .25);
 }
 
